@@ -16,8 +16,11 @@
           <div class="globalnav__menu">
             <ul class="gmenu">
               <li class="logo" style="float: left">
-                <a href="/">mooovi</a>
+                <a href="/">pharmovie</a>
               </li>
+                 <li class="entry_button" style="float: right">
+                  <%= link_to 'サインアウト', "/users/sign_out", method: :delete %>
+                </li>
               <li class="entry_button" style="float: right">
                 <a href="/search">投稿する</a>
               </li>
@@ -32,23 +35,25 @@
               <i class="icon-crown color-gray-light"></i>投稿ランキング
             </h4>
             <ul class="listview listview--condensed text-small">
+            <% @ranking.each.with_index(1) do |product, i| %>
               <li data-cinema-id="">
-                <a href="">
+                <a href="/product/<%= product.id %>">
                   <div class="box">
                     <div class="box__cell w40 align-center">
                       <p class="label bgcolor-gray-lighter align-center">
-                        1
+                        <%= i %>
                       </p>
                     </div>
                     <div class="box__cell pl1em">
                       <p class="text-xsmall no-space">
-                        神さまの言うとおり
+                        <%= product.title %>
                       </p>
-                      <img src="http://image.eiga.k-img.com/images/movie/79576/poster2/200.jpg?1410346831" alt="">
+                      <img src="<%= product.image_url %>" alt="<% product.title %>">
                     </div>
                   </div>
                 </a>
               </li>
+              <% end %>
             </ul>
           </aside>
         </div>
